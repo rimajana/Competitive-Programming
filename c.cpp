@@ -7,7 +7,10 @@ typedef unsigned long long ull;
 
 void solve()
 {
-     cout<< "ge"<<endl;
+    int n;
+    cin >> n;
+    n++;
+    cout << n << endl;
 }
 
 int main()
