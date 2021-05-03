@@ -37,14 +37,15 @@ void build(int index, int l, int r)
     t[index] = t[2 * index] + t[2 * index + 1];
 }
 
-
-void update(int index, int l, int r, int pos, int val)
+void update(int index, int l, int r, int pos, int val) //Here we are updating the position with value
 {
-    //Here we are updating the position with value
-    if(pos<l || pos>r){
+
+    if (pos < l || pos > r)
+    {
         return;
     }
-    if(l==r){
+    if (l == r)
+    {
         //Leaf node
         arr[l] = val;
         t[index] = val;
@@ -52,26 +53,27 @@ void update(int index, int l, int r, int pos, int val)
     }
     int mid = (l + r) / 2;
     update(index * 2, l, mid, pos, val);
-    update(index * 2+1,mid+1,r, pos, val);
-    //merge logic of segment tree
-    t[index] = t[2 * index] + t[2 * index + 1];
+    update(index * 2 + 1, mid + 1, r, pos, val);
 
+    t[index] = t[2 * index] + t[2 * index + 1]; //merge logic of segment tree
 }
 
-int sum(int index, int l, int r, int lq, int rq)
+int sum(int index, int l, int r, int lq, int rq) //Here we are findind the sum from range (lq to rq including lq and rq)
 {
-    //check if two ranges intersect or not if they dont intersect then return 0
 
-    if(l>rq || lq>r){return 0;}
-    if(lq<=l and r<=rq){
+    if (l > rq || lq > r) //check if two ranges intersect or not if they dont intersect then return 0
+    {
+        return 0;
+    }
+
+    if (lq <= l and r <= rq) //If l and r exist in between lq and rq then we are directly returning the node
+    {
 
         return t[index];
     }
     int mid = (l + r) / 2;
-    //contribution ofleft child and right child(recurse on left size and right side)
-    return sum(index * 2, l, mid, lq, rq) + sum(index * 2 + 1, mid + 1, r, lq, rq);
+    return sum(index * 2, l, mid, lq, rq) + sum(index * 2 + 1, mid + 1, r, lq, rq); //contribution of left child and right child(recurse on left size and right side)
 }
-
 
 void solve()
 {
@@ -81,33 +83,31 @@ void solve()
     {
         cin >> arr[i];
     }
-    //node 1 is root node and it is responsible from l to r
 
-    build(1, 0, n - 1);
-    //  Taking the number of queries
-    int q;
+    build(1, 0, n - 1); //node 1 is root node and it is responsible from l to r
+
+    int q; //  Taking the number of queries
     cin >> q;
     for (int i = 0; i < q; i++)
     {
         int ch;
         cin >> ch;
-        if (ch == 1)
+        if (ch == 1) //updating any position(x) with value(v)
         {
-            //updating any position(x) with value(v)
+
             int x, v;
             cin >> x >> v;
             update(1, 0, n - 1, x, v);
         }
         else
-        {
-            //Returning root node value?
+        { //Here we are findind the sum from range (l to r including l and r)
+
             int l, r;
             cin >> l >> r;
-            cout<<sum(1, 0, n - 1, l, r) <<"\n";
+            cout << sum(1, 0, n - 1, l, r) << "\n";
         }
     }
 }
- 
 
 int main()
 {
