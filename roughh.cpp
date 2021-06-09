@@ -1,16 +1,17 @@
 #include <iostream>
+#include <bits/stdc++.h>
 #define MOD 1e9+7
 #define fo(i, a, p) for (int i = (a); i < p; i++)
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
+#define endl '\n'
 
 void solve()
 {
-    int n;
-    cin >> n;
-    n++;
-    cout << n << endl;
+    string s1 = "EDfvb";
+    string t = s1;
+    cout << t << "\n";
 }
 
 int main()
@@ -19,7 +20,7 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     //string s;
     //getline(cin,s);
     while (t--)

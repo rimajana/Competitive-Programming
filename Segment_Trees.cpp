@@ -58,7 +58,7 @@ void update(int index, int l, int r, int pos, int val) //Here we are updating th
     t[index] = t[2 * index] + t[2 * index + 1]; //merge logic of segment tree
 }
 
-int sum(int index, int l, int r, int lq, int rq) //Here we are findind the sum from range (lq to rq including lq and rq)
+int query(int index, int l, int r, int lq, int rq) //Here we are findind the query from range (lq to rq including lq and rq)
 {
 
     if (l > rq || lq > r) //check if two ranges intersect or not if they dont intersect then return 0
@@ -72,13 +72,13 @@ int sum(int index, int l, int r, int lq, int rq) //Here we are findind the sum f
         return t[index];
     }
     int mid = (l + r) / 2;
-    return sum(index * 2, l, mid, lq, rq) + sum(index * 2 + 1, mid + 1, r, lq, rq); //contribution of left child and right child(recurse on left size and right side)
+    return query(index * 2, l, mid, lq, rq) + query(index * 2 + 1, mid + 1, r, lq, rq); //contribution of left child and right child(recurse on left size and right side)
 }
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n,q;
+    cin >> n>>q;
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
@@ -86,8 +86,8 @@ void solve()
 
     build(1, 0, n - 1); //node 1 is root node and it is responsible from l to r
 
-    int q; //  Taking the number of queries
-    cin >> q;
+    
+    
     for (int i = 0; i < q; i++)
     {
         int ch;
@@ -100,11 +100,11 @@ void solve()
             update(1, 0, n - 1, x, v);
         }
         else
-        { //Here we are findind the sum from range (l to r including l and r)
+        { //Here we are findind the query from range (l to r including l and r)
 
             int l, r;
             cin >> l >> r;
-            cout << sum(1, 0, n - 1, l, r) << "\n";
+            cout << query(1, 0, n - 1, l, r) << "\n";
         }
     }
 }

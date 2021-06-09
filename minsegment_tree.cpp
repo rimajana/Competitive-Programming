@@ -21,6 +21,18 @@ void build(int index,int l,int r){
     t[index] = min(t[2 * index], t[2 * index + 1]);
 }
 
+
+void print_left(int n){
+    int k;
+    cout << t[1] << "\n";
+    if(n%2 == 1)
+        k = n / 2 + 1;
+    else k = n / 2;
+    for (int i = 2; i <= k;i++){
+        cout << t[2*i] << t[2*i + 1];
+
+    }
+}
 ll query(int index,int l,int r,int lq,int rq){  
     if (l > rq || lq > r) //check if two ranges intersect or not if they dont intersect then return 0
     {
