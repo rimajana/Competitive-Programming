@@ -7,7 +7,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 #define endl '\n'
 
-// // if our string is of length n then no of permutation is n!
+// // if our string is of length n then no of permutation is n! if all n are different letters
 // FIRST WE SWAP THE FIRST LETTER OF THE STRING AND THEN CONTINUE TILL THE END OF THE STRING
 // THEN WE RECURSE 
 // BACKTRACTING TO RETURN TO THE STRING BEFORE RECURSING
@@ -41,8 +41,8 @@ void permutation(int l,int r){
 
 void solve()
 {
-    
-    cin>>s;
+
+    s = "HISTORY";
     n=s.size();
     int l;
     int r ;
